@@ -1,0 +1,52 @@
+services:
+  db:
+    image: mysql:8.0
+    container_name: network_monitor_db
+    restart: always
+    # Menggunakan file .env untuk mengambil password
+    env_file:
+      - .env
+    # Mapping variabel .env ke variabel spesifik image MySQL
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_DATABASE: ${DB_NAME}
+      TZ: Asia/Jakarta
+    volumes:
+      - db_data:/var/lib/mysql
+      # - ./db_init:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 10
+
+  web:
+    build: .
+    container_name: network_monitor_web
+    restart: always
+    ports:
+      - "${APP_PORT}:5000"
+    depends_on:
+      - db
+    # Load semua variabel di .env ke dalam container Python
+    env_file:
+      - .env
+    environment:
+      TZ: Asia/Jakarta
+    volumes:
+      - ./app:/app
+  
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: network_monitor_pma
+    restart: always
+    ports:
+      - "5001:80"  # Akses via localhost:8080
+    environment:
+      PMA_HOST: db             # Harus sama dengan nama service database di atas ('db')
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD} # Ambil password dari .env
+      TZ: Asia/Jakarta         # Agar jam di GUI sesuai WIB
+    depends_on:
+      - db
+
+volumes:
+  db_data:

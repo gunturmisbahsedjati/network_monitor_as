@@ -1,0 +1,131 @@
+ body {
+     background-color: #f4f6f9;
+ }
+
+ .card-counter {
+     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+     padding: 20px;
+     background-color: #fff;
+     border-radius: 8px;
+     position: relative;
+     overflow: hidden;
+     transition: 0.3s;
+ }
+
+ .card-counter:hover {
+     transform: translateY(-3px);
+     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+ }
+
+ .card-counter i {
+     font-size: 3.5em;
+     opacity: 0.1;
+     position: absolute;
+     right: 15px;
+     top: 15px;
+ }
+
+ .card-counter .count-numbers {
+     font-size: 32px;
+     font-weight: bold;
+     display: block;
+     margin-bottom: 5px;
+ }
+
+ .card-counter .count-name {
+     opacity: 0.7;
+     font-weight: 500;
+     text-transform: uppercase;
+     font-size: 12px;
+     letter-spacing: 1px;
+ }
+
+ .border-left-primary {
+     border-left: 4px solid #0d6efd;
+ }
+
+ .border-left-success {
+     border-left: 4px solid #198754;
+ }
+
+ .border-left-danger {
+     border-left: 4px solid #dc3545;
+ }
+
+ /* Animasi kedip untuk Live Mode */
+ .live-indicator {
+     height: 10px;
+     width: 10px;
+     background-color: #dc3545;
+     border-radius: 50%;
+     display: inline-block;
+     box-shadow: 0 0 0 rgba(220, 53, 69, 0.4);
+     animation: pulse 1.5s infinite;
+     margin-right: 5px;
+     display: none;
+     /* Hidden by default */
+ }
+
+ @keyframes pulse {
+     0% {
+         transform: scale(0.95);
+         box-shadow: 0 0 0 0 rgba(220, 53, 69, 0.7);
+     }
+
+     70% {
+         transform: scale(1);
+         box-shadow: 0 0 0 6px rgba(220, 53, 69, 0);
+     }
+
+     100% {
+         transform: scale(0.95);
+         box-shadow: 0 0 0 0 rgba(220, 53, 69, 0);
+     }
+ }
+
+ /* CSS untuk Chat Area */
+ #chatContainer {
+     height: 400px;
+     overflow-y: auto;
+     background-color: #f8f9fa;
+     padding: 15px;
+     border-radius: 5px;
+     display: flex;
+     flex-direction: column;
+     gap: 10px;
+ }
+
+ .chat-bubble {
+     max-width: 80%;
+     padding: 10px 15px;
+     border-radius: 15px;
+     font-size: 0.95rem;
+     line-height: 1.4;
+     position: relative;
+     word-wrap: break-word;
+ }
+
+ /* Pesan dari User (Kanan, Biru) */
+ .user-msg {
+     align_self: flex-end;
+     background-color: #0d6efd;
+     color: white;
+     border-bottom-right-radius: 2px;
+ }
+
+ /* Pesan dari AI (Kiri, Abu-abu) */
+ .ai-msg {
+     align_self: flex-start;
+     background-color: #e9ecef;
+     color: #212529;
+     border-bottom-left-radius: 2px;
+ }
+
+ /* Markdown formatting fix inside bubble */
+ .ai-msg pre {
+     background: #333;
+     color: #fff;
+     padding: 5px;
+     border-radius: 5px;
+     white-space: pre-wrap;
+ }
