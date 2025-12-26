@@ -1,1 +1,2 @@
-# network_monitor_with_python&docker
+# Network Monitor With Python & Docker & Gemini
+versi 1 menggunakan AI Assistant untuk interaktif chat kendala jaringan
